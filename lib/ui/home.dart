@@ -5,6 +5,8 @@ class Home extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final screenHeight = MediaQuery.of(context).size.height;
+
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
@@ -52,16 +54,14 @@ class Home extends StatelessWidget {
                   child: IconButton(
                     onPressed: () {},
                     icon: Container(
-                      padding: const EdgeInsets.all(
-                          10), // Padding di dalam kontainer untuk memberi jarak antara ikon dan latar belakang
+                      padding: const EdgeInsets.all(10),
                       decoration: BoxDecoration(
-                        color: Color(0xFFE5EDFF), // Warna latar belakang
-                        shape: BoxShape
-                            .circle, // Bentuk latar belakang menjadi lingkaran
+                        color: const Color(0xFFE5EDFF),
+                        shape: BoxShape.circle,
                       ),
                       child: const Icon(
                         Icons.notifications_outlined,
-                        color: Color(0xFF2B61E3), // Warna ikon
+                        color: Color(0xFF2B61E3),
                         size: 28,
                       ),
                     ),
@@ -73,172 +73,128 @@ class Home extends StatelessWidget {
         ),
         body: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20),
-          child: Align(
-            alignment: Alignment.topCenter,
-            child: Container(
-              padding: const EdgeInsets.only(top: 16),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Image.asset(
-                    'assets/images/header-scanow.png', // Pastikan nama file sesuai
-                    width: 380,
-                    height: 150, // Atur tinggi gambar sesuai kebutuhan
-                    fit: BoxFit.contain,
+          child: Column(
+            children: [
+              const SizedBox(height: 12),
+              Image.asset(
+                'assets/images/header-scanow.png',
+                width: 350,
+                height: screenHeight * 0.18, // Atur tinggi gambar
+                fit: BoxFit.contain,
+              ),
+              const SizedBox(height: 12),
+              Container(
+                width: double.infinity,
+                padding: const EdgeInsets.symmetric(vertical: 12),
+                decoration: ShapeDecoration(
+                  color: Colors.white,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(16),
                   ),
-                  const SizedBox(height: 16),
-                  Container(
-                    width: 380,
-                    height: 500,
-                    decoration: ShapeDecoration(
-                      color: Colors.white,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(16),
+                ),
+                child: Column(
+                  children: [
+                    Container(
+                      alignment: Alignment.center,
+                      height: 35,
+                      width: 180,
+                      decoration: ShapeDecoration(
+                        color: const Color(0xFFF8F8F8),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                      ),
+                      child: const Text(
+                        "Scan Here!",
+                        style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.w400,
+                        ),
                       ),
                     ),
-                    child: Column(
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.pushNamed(context, '/scanner');
+                      },
+                      child: Container(
+                        width: 220,
+                        height: 220, // QR scanner diperkecil
+                        margin: const EdgeInsets.only(top: 16),
+                        decoration: ShapeDecoration(
+                          color: const Color(0xFFE5EDFF),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(22),
+                          ),
+                        ),
+                        child: const Center(
+                          child: Icon(
+                            Icons.qr_code_scanner_rounded,
+                            size: 120, // Icon QR scanner diperkecil
+                            color: Color(0xFF2B61E3),
+                          ),
+                        ),
+                      ),
+                    ),
+                    const SizedBox(height: 24),
+                    Row(
                       mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        Container(
-                          alignment: Alignment.center,
-                          height: 40,
-                          width: 200,
-                          decoration: ShapeDecoration(
-                            color: const Color(0xFFF8F8F8),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                          ),
-                          child: const Text(
-                            "Scan Here!",
-                            style: TextStyle(
-                              fontSize: 17,
-                              fontWeight: FontWeight.w400,
-                            ),
-                          ),
+                        _buildFeatureButton(
+                          icon: Icons.send,
+                          label: "Send",
                         ),
-                        GestureDetector(
-                          onTap: () {
-                            Navigator.pushNamed(context, '/scanner');
-                          },
-                          child: Container(
-                            width: 250,
-                            height: 250,
-                            margin: const EdgeInsets.only(top: 20),
-                            decoration: ShapeDecoration(
-                              color: const Color(0xFFE5EDFF),
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(22),
-                              ),
-                            ),
-                            child: const Center(
-                              child: Icon(
-                                Icons.qr_code_scanner_rounded,
-                                size: 150,
-                                color: Color(0xFF2B61E3),
-                              ),
-                            ),
-                          ),
+                        const SizedBox(width: 24),
+                        _buildFeatureButton(
+                          icon: Icons.add_rounded,
+                          label: "Add",
                         ),
-                        const SizedBox(height: 30),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Column(
-                              children: [
-                                Container(
-                                  width: 70,
-                                  height: 70,
-                                  decoration: ShapeDecoration(
-                                    color: const Color(0xFF2B61E3),
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(49),
-                                    ),
-                                  ),
-                                  child: const Center(
-                                    child: Icon(
-                                      Icons.send,
-                                      size: 30,
-                                      color: Colors.white,
-                                    ),
-                                  ),
-                                ),
-                                const SizedBox(height: 10),
-                                const Text("Send",
-                                    style: TextStyle(
-                                      fontSize: 18,
-                                      color: Colors.black,
-                                    )),
-                              ],
-                            ),
-                            const SizedBox(width: 30),
-                            Column(
-                              children: [
-                                Container(
-                                  width: 70,
-                                  height: 70,
-                                  decoration: ShapeDecoration(
-                                    color: const Color(0xFF2B61E3),
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(49),
-                                    ),
-                                  ),
-                                  child: const Center(
-                                    child: Icon(
-                                      Icons.add_rounded,
-                                      size: 30,
-                                      color: Colors.white,
-                                    ),
-                                  ),
-                                ),
-                                const SizedBox(height: 10),
-                                const Text("Add",
-                                    style: TextStyle(
-                                      fontSize: 18,
-                                      color: Colors.black,
-                                    )),
-                              ],
-                            ),
-                            const SizedBox(width: 30),
-                            Column(
-                              children: [
-                                Container(
-                                  width: 70,
-                                  height: 70,
-                                  decoration: ShapeDecoration(
-                                    color: const Color(0xFF2B61E3),
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(49),
-                                    ),
-                                  ),
-                                  child: const Center(
-                                    child: Icon(
-                                      Icons.payment,
-                                      size: 30,
-                                      color: Colors.white,
-                                    ),
-                                  ),
-                                ),
-                                const SizedBox(height: 10),
-                                const Text("Pay",
-                                    style: TextStyle(
-                                      fontSize: 18,
-                                      color: Colors.black,
-                                    )),
-                              ],
-                            ),
-                          ],
+                        const SizedBox(width: 24),
+                        _buildFeatureButton(
+                          icon: Icons.payment,
+                          label: "Pay",
                         ),
                       ],
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
-            ),
+              const Spacer(),
+            ],
           ),
         ),
       ),
+    );
+  }
+
+  Widget _buildFeatureButton({required IconData icon, required String label}) {
+    return Column(
+      children: [
+        Container(
+          width: 60, // Lebar tombol diperkecil
+          height: 60, // Tinggi tombol diperkecil
+          decoration: ShapeDecoration(
+            color: const Color(0xFF2B61E3),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(49),
+            ),
+          ),
+          child: Center(
+            child: Icon(
+              icon,
+              size: 26, // Ukuran ikon diperkecil
+              color: Colors.white,
+            ),
+          ),
+        ),
+        const SizedBox(height: 8),
+        Text(
+          label,
+          style: const TextStyle(
+            fontSize: 16, // Ukuran teks diperkecil
+            color: Colors.black,
+          ),
+        ),
+      ],
     );
   }
 }
