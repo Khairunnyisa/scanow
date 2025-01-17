@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-// Kelas Home sebagai StatefulWidget
 class Home extends StatelessWidget {
   const Home({super.key});
 
