@@ -79,10 +79,10 @@ class Home extends StatelessWidget {
               Image.asset(
                 'assets/images/header-scanow.png',
                 width: 350,
-                height: screenHeight * 0.18, // Atur tinggi gambar
+                height: screenHeight * 0.18,
                 fit: BoxFit.contain,
               ),
-              const SizedBox(height: 12),
+              const SizedBox(height: 13),
               Container(
                 width: double.infinity,
                 padding: const EdgeInsets.symmetric(vertical: 12),
@@ -118,7 +118,7 @@ class Home extends StatelessWidget {
                       },
                       child: Container(
                         width: 220,
-                        height: 220, // QR scanner diperkecil
+                        height: 220,
                         margin: const EdgeInsets.only(top: 16),
                         decoration: ShapeDecoration(
                           color: const Color(0xFFE5EDFF),
@@ -129,7 +129,7 @@ class Home extends StatelessWidget {
                         child: const Center(
                           child: Icon(
                             Icons.qr_code_scanner_rounded,
-                            size: 120, // Icon QR scanner diperkecil
+                            size: 120,
                             color: Color(0xFF2B61E3),
                           ),
                         ),
@@ -170,8 +170,8 @@ class Home extends StatelessWidget {
     return Column(
       children: [
         Container(
-          width: 60, // Lebar tombol diperkecil
-          height: 60, // Tinggi tombol diperkecil
+          width: 60,
+          height: 60,
           decoration: ShapeDecoration(
             color: const Color(0xFF2B61E3),
             shape: RoundedRectangleBorder(
@@ -181,7 +181,7 @@ class Home extends StatelessWidget {
           child: Center(
             child: Icon(
               icon,
-              size: 26, // Ukuran ikon diperkecil
+              size: 26,
               color: Colors.white,
             ),
           ),
@@ -190,7 +190,7 @@ class Home extends StatelessWidget {
         Text(
           label,
           style: const TextStyle(
-            fontSize: 16, // Ukuran teks diperkecil
+            fontSize: 16,
             color: Colors.black,
           ),
         ),
